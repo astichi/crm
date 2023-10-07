@@ -1,6 +1,6 @@
-.modal__main {
+/* .modal__main_close {
   display: none;
-}
+} */
 
 /* modal overlay */
 .modal__main_overlay {
@@ -62,8 +62,11 @@
   display: none;
 }
 
-.form__title-add,
-.form__title-change {
+/* .form__title-change {
+  display: none;
+} */
+
+.form__title-text {
   text-transform: uppercase;
   letter-spacing: 2.4px;
   font-weight: 700;
@@ -377,8 +380,7 @@
     padding: 20px 60px 30px;
   }
 
-  .form__title-add,
-  .form__title-change {
+  .form__title-text {
     font-size: 18px;
     line-height: 22px;
   }

@@ -108,10 +108,12 @@
 
 .tools-panel__search-button:hover > svg > path {
   fill: #c6c2de;
+  transition: all .4s ease-in-out;
 }
 
 .tools-panel__search-button:active > svg > path {
   fill: #ffffff;
+  transition: all .4s ease-in-out;
 }
 
 .tools-panel__search-input {
@@ -344,7 +346,6 @@ select {
   position: absolute;
   right: 2px;
   top: 3px;
-  z-index: 1;
   pointer-events: none;
   box-sizing: border-box;
 }
