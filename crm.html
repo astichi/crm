@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM</title>  
+  <link rel="preload" href="./fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./fonts/Inter-Regular.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="./fonts/Inter-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./fonts/Inter-Medium.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="./fonts/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./fonts/Inter-SemiBold.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="./fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./fonts/Inter-Bold.woff" as="font" type="font/woff" crossorigin>
+  <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+  <section class="modal">
+    <div class="modal__error modal__error_overlay">
+      <div class="error">
+        <button class="error__close-button" type="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2L22 22" stroke="#6E6893" stroke-width="3" stroke-linecap="round"/>
+            <path d="M2 22L22 2" stroke="#6E6893" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </button>
+  
+        <svg class="error__image" width="94" height="94" viewBox="0 0 94 94" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 2L92 92" stroke="#D80101" stroke-width="3" stroke-linecap="round"/>
+          <path d="M2 92L92 2" stroke="#D80101" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+  
+        <p class="error__text">Что-то пошло не так</p>
+      </div>
+    </div>
+
+    <div class="modal__main modal__main_overlay">
+      <div class="modal__main-box">
+        <button class="modal__close-button" type="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2L22 22" stroke="#6E6893" stroke-width="3" stroke-linecap="round"/>
+            <path d="M2 22L22 2" stroke="#6E6893" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </button>
+  
+        <form class="modal__form form" action="https://jsonplaceholder.typicode.com/posts" method="POST">
+            <div class="form__title">
+              <h2 class="form__title-add">Добавить товар</h2>
+              <h2 class="form__title-change">Изменить товар</h2>
+              <p class="form__title-id">id: <span class="form__id-number">201910241</span></p>
+            </div>
+  
+              <fieldset class="form__box">
+                <div class="form__container">
+                  <label class="form__label form__label-name">
+                    <span class="form__label-text">Наименование</span>
+                    <input class="form__input" type="text" name="name">
+                  </label>
+    
+                  <label class="form__label form__label-description">
+                    <span class="form__label-text">Описание</span>
+                    <textarea class="form__textarea" name="description"></textarea>
+                  </label>
+    
+                  <label class="form__label form__label-category">
+                    <span class="form__label-text">Категория</span>
+                    <input class="form__input" type="text" name="category">
+                  </label>
+    
+                  <label class="form__label form__label-units">
+                    <span class="form__label-text">Единицы измерения</span>
+                    <input class="form__input" type="text" name="units">
+                  </label>
+    
+                  <label class="form__label form__label-count">
+                    <span class="form__label-text">Количество</span>
+                    <input class="form__input" type="number" name="count">
+                  </label>
+    
+                  <div class="form__label form__label-discount">
+                    <label class="form__label-text">
+                      <span>Дисконт</span>
+                    </label>
+                    <div class="checkbox">
+                      <input class="form__input-checkbox" type="checkbox" name="checkbox">
+                      <input class="form__input form__input-discount" type="text" name="discount">
+                    </div> 
+                  </div>
+
+                  <label class="form__label form__label-price">
+                    <span class="form__label-text">Цена</span>
+                    <input class="form__input" type="number" name="price"> 
+                  </label>
+    
+                  <p class="form__image-warning-text">Изображение не должно превышать размер 1мб</p>
+    
+                  <label class="form__image-upload">Добавить изображение
+                    <input class="form__image-button" type="file" name="image" accept="image/*">
+                  </label>
+                </div>
+  
+                <div class="form__product product">
+                  <img class="product__image" src="./images/modal_image.jpg" alt="Изображение товара">
+                  <button class="product__delete" type="button">
+                    <svg width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.5334 12.45L12 15.9833L8.45004 12.45L6.10004 14.8L9.65004 18.3333L6.11671 21.8667L8.46671 24.2167L12 20.6833L15.5334 24.2167L17.8834 21.8667L14.35 18.3333L17.8834 14.8L15.5334 12.45ZM17.8334 1.66667L16.1667 0H7.83337L6.16671 1.66667H0.333374V5H23.6667V1.66667H17.8334ZM2.00004 26.6667C2.00004 28.5 3.50004 30 5.33337 30H18.6667C20.5 30 22 28.5 22 26.6667V6.66667H2.00004V26.6667ZM5.33337 10H18.6667V26.6667H5.33337V10Z" fill="white"/>
+                    </svg>                    
+                  </button>
+                </div>
+              </fieldset>
+  
+              <div class="form__total total">
+                <p class="total__text">Итоговая стоимость: <span class="total__sum">$ 900.00</span></p>
+                <button class="form__submit-button" type="submit">Добавить товар</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="table">
+    <div class="table__container">  
+      <div class="table__title">
+        <h2 class="table__title_cms">cms</h2>
+        <p class="table__title_total">Итоговая стоимость: <span class="table__title_sum">$ 900.00</span></p>
+      </div>
+  
+      <div class="table__box">
+        <div class="table__tools-panel tools-panel">
+          <button class="tools-panel__filter-button" type="button">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 12L20 4V0H0V4L8 12V20L12 16V12Z" fill="#8B83BA"/>
+            </svg>
+  
+            <span class="tools-panel__filter-text">Фильтр</span>
+          </button>
+  
+          <div class="tools-panel__search">
+            <input class="tools-panel__search-input" type="search" placeholder="Поиск по наименованию и категории">
+  
+            <button class="tools-panel__search-button">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.4097 14.8822C11.7399 16.1799 9.63851 16.7922 7.53338 16.5942C5.42824 16.3963 3.47766 15.403 2.07881 13.8166C0.679961 12.2303 -0.0619809 10.1701 0.00405863 8.05565C0.0700982 5.94118 0.939153 3.9314 2.43427 2.43552C3.92939 0.939633 5.93814 0.0701341 8.05152 0.00406071C10.1649 -0.0620127 12.224 0.680308 13.8096 2.07987C15.3951 3.47944 16.3879 5.43102 16.5857 7.53723C16.7836 9.64345 16.1717 11.7459 14.8745 13.4166L19.6936 18.2201C20.1016 18.6267 20.1022 19.2872 19.695 19.6946C19.2878 20.1021 18.6273 20.1017 18.2204 19.6939L13.4201 14.8822H13.4097ZM8.31916 14.5495C9.13773 14.5495 9.94829 14.3882 10.7045 14.0748C11.4608 13.7614 12.148 13.302 12.7268 12.7229C13.3056 12.1438 13.7647 11.4563 14.078 10.6996C14.3913 9.94298 14.5525 9.13201 14.5525 8.31302C14.5525 7.49403 14.3913 6.68306 14.078 5.92641C13.7647 5.16976 13.3056 4.48225 12.7268 3.90314C12.148 3.32402 11.4608 2.86465 10.7045 2.55123C9.94829 2.23782 9.13773 2.07651 8.31916 2.07651C6.66598 2.07651 5.08051 2.73356 3.91153 3.90314C2.74256 5.07271 2.08583 6.659 2.08583 8.31302C2.08583 9.96705 2.74256 11.5533 3.91153 12.7229C5.08051 13.8925 6.66598 14.5495 8.31916 14.5495Z" fill="#8B83BA"/>
+              </svg>              
+            </button>
+          </div>
+  
+          <button class="tools-panel__submit-button" type="submit">Добавить товар</button>
+        </div>
+  
+        <div class="table__overflow">
+          <table class="table__main-table main-table">
+            <thead class="main-table__table-head table-head">
+              <tr class="table-head__row">
+                <th class="table-head__1clmn">ID</th>
+                <th class="table-head__2clmn">Наименование</th>
+                <th class="table-head__3clmn">Категория</th>
+                <th class="table-head__4clmn">Ед/изм</th>
+                <th class="table-head__5clmn">Количество</th>
+                <th class="table-head__6clmn">Цена</th>
+                <th class="table-head__7clmn">Итог</th>
+                <th class="table-head__8clmn"></th>
+              </tr>
+            </thead>
+  
+            <tbody class="main-table__table-body table-body">
+              <tr class="table-body__row">
+                <td class="table-body__1clmn">246016548</td>
+                <td class="table-body__2clmn">Навигационная система Soundmax</td>
+                <td class="table-body__3clmn">Техника для дома</td>
+                <td class="table-body__4clmn">шт</td>
+                <td class="table-body__5clmn">5</td>
+                <td class="table-body__6clmn">$100</td>
+                <td class="table-body__7clmn">$500</td>
+                <td class="table-body__8clmn">
+                  <button class="table-body__no-image-button icon__button"></button>
+                  <button class="table-body__edit-button icon__button"></button>
+                  <button class="table-body__delete-button icon__button"></button>
+                </td>
+              </tr>
+  
+              <tr class="table-body__row">
+                <td class="table-body__1clmn">937295527</td>
+                <td class="table-body__2clmn">Настольная игра “На 4-х ногах”</td>
+                <td class="table-body__3clmn">Настольные игры</td>
+                <td class="table-body__4clmn">шт</td>
+                <td class="table-body__5clmn">12</td>
+                <td class="table-body__6clmn">$14</td>
+                <td class="table-body__7clmn">$68</td>
+                <td class="table-body__8clmn">
+                  <button class="table-body__image-button icon__button"></button>
+                  <button class="table-body__edit-button icon__button"></button>
+                  <button class="table-body__delete-button icon__button"></button>
+                </td>
+              </tr>
+  
+              <tr class="table-body__row">
+                <td class="table-body__1clmn">246016548</td>
+                <td class="table-body__2clmn">Навигационная система Soundmax</td>
+                <td class="table-body__3clmn">Техника для дома</td>
+                <td class="table-body__4clmn">шт</td>
+                <td class="table-body__5clmn">5</td>
+                <td class="table-body__6clmn">$100</td>
+                <td class="table-body__7clmn">$500</td>
+                <td class="table-body__8clmn">
+                  <button class="table-body__image-button icon__button"></button>
+                  <button class="table-body__edit-button icon__button"></button>
+                  <button class="table-body__delete-button icon__button"></button>
+                </td>
+              </tr>
+  
+              <tr class="table-body__row">
+                <td class="table-body__1clmn">246016548</td>
+                <td class="table-body__2clmn">Навигационная система Soundmax</td>
+                <td class="table-body__3clmn">Техника для дома</td>
+                <td class="table-body__4clmn">шт</td>
+                <td class="table-body__5clmn">5</td>
+                <td class="table-body__6clmn">$100</td>
+                <td class="table-body__7clmn">$500</td>
+                <td class="table-body__8clmn">
+                  <button class="table-body__image-button icon__button"></button>
+                  <button class="table-body__edit-button icon__button"></button>
+                  <button class="table-body__delete-button icon__button"></button>
+                </td>
+              </tr>
+  
+              <tr class="table-body__row">
+                <td class="table-body__1clmn">246016548</td>
+                <td class="table-body__2clmn">Навигационная система Soundmax</td>
+                <td class="table-body__3clmn">Техника для дома</td>
+                <td class="table-body__4clmn">шт</td>
+                <td class="table-body__5clmn">5</td>
+                <td class="table-body__6clmn">$100</td>
+                <td class="table-body__7clmn">$500</td>
+                <td class="table-body__8clmn">
+                  <button class="table-body__image-button icon__button"></button>
+                  <button class="table-body__edit-button icon__button"></button>
+                  <button class="table-body__delete-button icon__button"></button>
+                </td>
+              </tr>
+  
+              <tr class="table-body__row">
+                <td class="table-body__1clmn">246016548</td>
+                <td class="table-body__2clmn">Навигационная система Soundmax</td>
+                <td class="table-body__3clmn">Техника для дома</td>
+                <td class="table-body__4clmn">шт</td>
+                <td class="table-body__5clmn">5</td>
+                <td class="table-body__6clmn">$100</td>
+                <td class="table-body__7clmn">$500</td>
+                <td class="table-body__8clmn">
+                  <button class="table-body__image-button icon__button"></button>
+                  <button class="table-body__edit-button icon__button"></button>
+                  <button class="table-body__delete-button icon__button"></button>
+                </td>
+              </tr>
+  
+              <tr class="table-body__row">
+                <td class="table-body__1clmn">246016548</td>
+                <td class="table-body__2clmn">Навигационная система Soundmax</td>
+                <td class="table-body__3clmn">Техника для дома</td>
+                <td class="table-body__4clmn">шт</td>
+                <td class="table-body__5clmn">5</td>
+                <td class="table-body__6clmn">$100</td>
+                <td class="table-body__7clmn">$500</td>
+                <td class="table-body__8clmn">
+                  <button class="table-body__image-button icon__button"></button>
+                  <button class="table-body__edit-button icon__button"></button>
+                  <button class="table-body__delete-button icon__button"></button>
+                </td>
+              </tr>
+  
+              <tr class="table-body__row">
+                <td class="table-body__1clmn">246016548</td>
+                <td class="table-body__2clmn">Навигационная система Soundmax</td>
+                <td class="table-body__3clmn">Техника для дома</td>
+                <td class="table-body__4clmn">шт</td>
+                <td class="table-body__5clmn">5</td>
+                <td class="table-body__6clmn">$100</td>
+                <td class="table-body__7clmn">$500</td>
+                <td class="table-body__8clmn">
+                  <button class="table-body__image-button icon__button"></button>
+                  <button class="table-body__edit-button icon__button"></button>
+                  <button class="table-body__delete-button icon__button"></button>
+                </td>
+              </tr>
+  
+              <tr class="table-body__row">
+                <td class="table-body__1clmn">246016548</td>
+                <td class="table-body__2clmn">Навигационная система Soundmax</td>
+                <td class="table-body__3clmn">Техника для дома</td>
+                <td class="table-body__4clmn">шт</td>
+                <td class="table-body__5clmn">5</td>
+                <td class="table-body__6clmn">$100</td>
+                <td class="table-body__7clmn">$500</td>
+                <td class="table-body__8clmn">
+                  <button class="table-body__image-button icon__button"></button>
+                  <button class="table-body__edit-button icon__button"></button>
+                  <button class="table-body__delete-button icon__button"></button>
+                </td>
+              </tr>
+  
+              <tr class="table-body__row">
+                <td class="table-body__1clmn">246016548</td>
+                <td class="table-body__2clmn">Навигационная система Soundmax</td>
+                <td class="table-body__3clmn">Техника для дома</td>
+                <td class="table-body__4clmn">шт</td>
+                <td class="table-body__5clmn">5</td>
+                <td class="table-body__6clmn">$100</td>
+                <td class="table-body__7clmn">$500</td>
+                <td class="table-body__8clmn">
+                  <button class="table-body__image-button icon__button"></button>
+                  <button class="table-body__edit-button icon__button"></button>
+                  <button class="table-body__delete-button icon__button"></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+  
+          <div class="table__footer footer">
+            <div class="footer__page-number">
+              <p class="footer__text">Показывать на странице:</p>
+
+              <div class="footer__select">
+                <select class="footer__select-field">
+                  <option value="">10</option>
+                  <option value="">20</option>
+                  <option value="">30</option>
+                </select>
+              </div>
+            </div>
+  
+            <p class="footer__page-counter">1-10 of 276</p>
+  
+            <div class="footer__page-slider">
+              <button class="footer__page-slider_left">
+                <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.79971 1.10636C6.42812 0.51287 5.43313 -0.426818 4.80472 0.216126L0.196378 4.51891C-0.0654595 4.7662 -0.0654595 5.21131 0.196378 5.4586L4.80472 9.81084C5.43313 10.4043 6.42812 9.46464 5.79971 8.87115L1.71504 5.01348L5.79971 1.10636Z" fill="#6E6893"/>
+                </svg>
+              </button>
+  
+              <button class="footer__page-slider_right">
+                <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0.200293 1.10636C-0.428118 0.51287 0.566865 -0.426818 1.19528 0.216126L5.80362 4.51891C6.06546 4.7662 6.06546 5.21131 5.80362 5.4586L1.19528 9.81084C0.566865 10.4043 -0.428118 9.46464 0.200293 8.87115L4.28496 5.01348L0.200293 1.10636Z" fill="#6E6893"/>
+                </svg> 
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
