@@ -180,45 +180,45 @@ th {
   background-color: #f4f2ff;
 }
 
-.table-head__1clmn {
+.table-head__id-column {
   padding: 15px 7px 15px 15px;
   width: 108px;
 }
 
-.table-head__2clmn {
+.table-head__name-column {
   padding: 15px 7px 15px 8px;
   width: 304px;
 }
 
-.table-head__3clmn {
+.table-head__category-column {
   padding: 15px 7px 15px 8px;
   width: 175px;
 }
 
-.table-head__4clmn {
+.table-head__units-column {
   padding: 15px 7px 15px 8px;
   width: 67px;
   white-space: nowrap;
 }
 
-.table-head__5clmn {
+.table-head__count-column {
   padding: 15px 7px 15px 8px;
   width: 106px;
 }
 
-.table-head__6clmn {
+.table-head__price-column {
   padding: 15px 7px 15px 8px;
   width: 95px;
   text-align: right;
 }
 
-.table-head__7clmn {
+.table-head__total-column {
   padding: 15px 7px 15px 8px;
   width: 130px;
   text-align: center;
 }
 
-.table-head__8clmn {
+.table-head__icon-column {
   padding: 15px 15px 15px 7px;
   width: 115px;
 }
@@ -233,41 +233,42 @@ td {
   color: #25213b
 }
 
-.table-body__1clmn {
+.table-body__id-column {
   padding: 15px 7px 15px 15px;
 }
 
-.table-body__2clmn {
+.table-body__name-column {
   padding: 15px 7px 15px 8px;
 }
 
-.table-body__3clmn {
+.table-body__category-column {
   padding: 15px 7px 15px 8px;
 }
 
-.table-body__4clmn {
-  padding: 15px 7px 15px 8px;
-  text-align: center;
-}
-
-.table-body__5clmn {
+.table-body__units-column {
   padding: 15px 7px 15px 8px;
   text-align: center;
 }
 
-.table-body__6clmn {
+.table-body__count-column {
+  padding: 15px 7px 15px 8px;
+  text-align: center;
+}
+
+.table-body__price-column {
   padding: 15px 7px 15px 8px;
   text-align: right;
 }
 
-.table-body__7clmn {
+.table-body__total-column {
   padding: 15px 7px 15px 8px;
   text-align: center;
 }
 
-.table-body__8clmn {
-  padding-right: 15px;
+.table-body__icon-column {
+  padding: 15px 15px 15px 8px;
   white-space: nowrap;
+  text-align: center;
 }
 
 /* иконки таблицы */
@@ -283,7 +284,7 @@ td {
 }
 
 .icon__button:not(:last-child) {
-  margin-right: 15px;
+  margin-right: 20px;
 }
 
 .icon__button:hover {
