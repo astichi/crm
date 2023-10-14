@@ -269,9 +269,33 @@ td {
   padding: 15px 15px 15px 8px;
   white-space: nowrap;
   text-align: center;
+  /* display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+  "image edit delete";
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px; */
 }
 
+/* .table-body__no-image-button,
+.table-body__image-button {
+  grid-area: image;
+}
+
+.table-body__edit-button {
+  grid-area: edit;
+}
+
+.table-body__delete-button {
+  grid-area: delete;
+} */
+
 /* иконки таблицы */
+.table-body__icon-svg {
+  display: none;
+}
+
 .icon__button {
   border: none;
   border-radius: 3px;
@@ -284,7 +308,7 @@ td {
 }
 
 .icon__button:not(:last-child) {
-  margin-right: 20px;
+  margin-right: 15px;
 }
 
 .icon__button:hover {
@@ -293,22 +317,6 @@ td {
 
 .icon__button:active {
   background-color: #f4f2ff;
-}
-
-.table-body__no-image-button {
-  background-image: url('../images/table_no_image_icon.svg');
-}
-
-.table-body__image-button {
-  background-image: url('../images/table_image_icon.svg');
-}
-
-.table-body__edit-button {
-  background-image: url('../images/table_edit_icon.svg');
-}
-
-.table-body__delete-button {
-  background-image: url('../images/table_delete_icon.svg');
 }
 
 /* нижняя часть таблицы */

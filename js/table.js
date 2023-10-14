@@ -76,16 +76,36 @@ const createRow = obj => {
 
     const imageButton = document.createElement('button');
     if (obj.images.small === undefined && obj.images.big === undefined) {
-      imageButton.classList.add('table-body__no-image-button', 'icon__button');
+      imageButton.classList.add('icon__button', 'table-body__no-image-button');
+      imageButton.insertAdjacentHTML('beforeend', `
+      <svg>
+        <use href="#no-image-icon"></use>
+      </svg>
+      `);
     } else {
-      imageButton.classList.add('table-body__image-button', 'icon__button');
+      imageButton.classList.add('icon__button', 'table-body__image-button');
+      imageButton.insertAdjacentHTML('beforeend', `
+      <svg>
+        <use href="#image-icon"></use>
+      </svg>
+      `);
     }
 
     const editButton = document.createElement('button');
-    editButton.classList.add('table-body__edit-button', 'icon__button');
+    editButton.classList.add('icon__button', 'table-body__edit-button');
+    editButton.insertAdjacentHTML('beforeend', `
+    <svg>
+      <use href="#edit-icon"></use>
+    </svg>
+    `);
 
     const deleteButton = document.createElement('button');
-    deleteButton.classList.add('table-body__delete-button', 'icon__button');
+    deleteButton.classList.add('icon__button', 'table-body__delete-button');
+    deleteButton.insertAdjacentHTML('beforeend', `
+    <svg>
+      <use href="#delete-icon"></use>
+    </svg>
+    `);
 
     newIconCell.append(imageButton, editButton, deleteButton);
     newIconCell.classList.add('table-body__icon-column');
@@ -104,10 +124,15 @@ const createRow = obj => {
 
 
 const renderGoods = arr => {
-  const result = arr.map(item => createRow(item));
+  // const result = arr.map(item => createRow(item));
+
+  // const table = document.querySelector('.table-body');
+  // result.map(index => table.append(index));
+
+  const result =arr.map(createRow);
 
   const table = document.querySelector('.table-body');
-  result.map(index => table.append(index))
+  table.append(...result);
 };
 
 renderGoods(goods);
