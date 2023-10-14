@@ -1,24 +1,51 @@
 'use strict';
 
-const modalTitleAdd = document.querySelector('.form__title-add');
-console.log(modalTitleAdd);
-const modalTitleChange = document.querySelector('.form__title-change');
-console.log(modalTitleChange);
+// const modalTitle = document.querySelector('.form__title-text');
+// console.log(modalTitle);
+// const modalIdNumber = document.querySelector('.form__id-number');
+// console.log(modalIdNumber);
+// const modalFormCheckbox = document.querySelector('.form__input-checkbox');
+// console.log(modalFormCheckbox);
+// const modalFormDiscountInput = document.querySelector('.form__input-discount');
+// console.log(modalFormDiscountInput);
+// const modalTotalPriceNumber = document.querySelector('.total__sum');
+// console.log(modalTotalPriceNumber);
 
-const modalIdNumber = document.querySelector('.form__id-number');
-console.log(modalIdNumber);
 
-const modalClose = document.querySelector('.modal__main_close');
-console.log(modalClose);
-const modalCloseButton = document.querySelector('.modal__close-button');
-console.log(modalCloseButton);
+const getModalCloseElements = () => {
+  const tableAddButton = document.querySelector('.tools-panel__submit-button');
+  const modalOverlay = document.querySelector('.modal__main_overlay');
+  const modalForm = document.querySelector('.modal__main-box');
+  const modalCloseButton = document.querySelector('.modal__close-button');
 
-const modalForm = document.querySelector('.modal__form');
-console.log(modalForm);
-const modalFormCheckbox = document.querySelector('.form__input-checkbox');
-console.log(modalFormCheckbox);
-const modalFormDiscountInput = document.querySelector('.form__input-discount');
-console.log(modalFormDiscountInput);
+  return {
+    tableAddButton,
+    modalOverlay,
+    modalForm,
+    modalCloseButton,
+  };
+};
 
-const modalTotalPriceNumber = document.querySelector('.total__sum');
-console.log(modalTotalPriceNumber);
+const showCloseModal = () => {
+  const elements = getModalCloseElements();
+
+  const {tableAddButton, modalOverlay, modalForm, modalCloseButton} = elements;
+
+  tableAddButton.addEventListener('click', () => {
+    modalOverlay.classList.add('is-visible');
+  });
+
+  modalForm.addEventListener('click', event => {
+    event.stopPropagation();
+  });
+
+  modalCloseButton.addEventListener('click', () => {
+    modalOverlay.classList.remove('is-visible');
+  });
+
+  modalOverlay.addEventListener('click', () => {
+    modalOverlay.classList.remove('is-visible');
+  });
+};
+
+showCloseModal();
