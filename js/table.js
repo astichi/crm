@@ -78,33 +78,25 @@ const createRow = obj => {
     if (obj.images.small === undefined && obj.images.big === undefined) {
       imageButton.classList.add('icon__button', 'table-body__no-image-button');
       imageButton.insertAdjacentHTML('beforeend', `
-      <svg>
-        <use href="#no-image-icon"></use>
-      </svg>
+        <image src="./images/table_no_image_icon.svg" alt="иконка - нет изображения"></image>
       `);
     } else {
       imageButton.classList.add('icon__button', 'table-body__image-button');
       imageButton.insertAdjacentHTML('beforeend', `
-      <svg>
-        <use href="#image-icon"></use>
-      </svg>
+        <image src="./images/table_image_icon.svg" alt="иконка - есть изображение"></image>
       `);
     }
 
     const editButton = document.createElement('button');
     editButton.classList.add('icon__button', 'table-body__edit-button');
     editButton.insertAdjacentHTML('beforeend', `
-    <svg>
-      <use href="#edit-icon"></use>
-    </svg>
+      <image src="./images/table_edit_icon.svg" alt="иконка - отредактировать"></image>
     `);
 
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('icon__button', 'table-body__delete-button');
     deleteButton.insertAdjacentHTML('beforeend', `
-    <svg>
-      <use href="#delete-icon"></use>
-    </svg>
+      <image src="./images/table_delete_icon.svg" alt="иконка - удалить"></image>
     `);
 
     newIconCell.append(imageButton, editButton, deleteButton);

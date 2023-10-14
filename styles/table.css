@@ -225,12 +225,14 @@ th {
 
 /* ячейки таблицы */
 td {
-  height: 60px;
   background-color: #ffffff;
-  border-bottom: 3px solid #f4f2ff;
   font-weight: 500;
   font-size: 14px;
   color: #25213b
+}
+
+.table-body__row {
+  border-bottom: 3px solid #f4f2ff;
 }
 
 .table-body__id-column {
@@ -239,10 +241,12 @@ td {
 
 .table-body__name-column {
   padding: 15px 7px 15px 8px;
+  white-space: nowrap;
 }
 
 .table-body__category-column {
   padding: 15px 7px 15px 8px;
+  white-space: nowrap;
 }
 
 .table-body__units-column {
@@ -267,33 +271,10 @@ td {
 
 .table-body__icon-column {
   padding: 15px 15px 15px 8px;
-  white-space: nowrap;
-  text-align: center;
-  /* display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-areas:
-  "image edit delete";
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px; */
-}
-
-/* .table-body__no-image-button,
-.table-body__image-button {
-  grid-area: image;
-}
-
-.table-body__edit-button {
-  grid-area: edit;
-}
-
-.table-body__delete-button {
-  grid-area: delete;
-} */
-
-/* иконки таблицы */
-.table-body__icon-svg {
-  display: none;
+  gap: 20px;
 }
 
 .icon__button {
@@ -305,10 +286,6 @@ td {
   background-size: contain;
   background-repeat: no-repeat;
   transition: .4s ease-in-out;
-}
-
-.icon__button:not(:last-child) {
-  margin-right: 15px;
 }
 
 .icon__button:hover {
