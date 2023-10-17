@@ -65,11 +65,14 @@ const createRow = obj => {
 
   const idColumn = createCell(obj.id, 'table-body__id-column');
   const nameColumn = createCell(obj.title, 'table-body__name-column');
-  const categoryColumn = createCell(obj.category, 'table-body__category-column');
+  const categoryColumn = createCell(
+      obj.category, 'table-body__category-column');
   const unitsColumn = createCell(obj.units, 'table-body__units-column');
   const countColumn = createCell(obj.count, 'table-body__count-column');
   const priceColumn = createCell('$' + obj.price, 'table-body__price-column');
-  const totalColumn = createCell('$' + obj.price * obj.count, 'table-body__total-column');
+  const totalColumn = createCell(
+      '$' + obj.price * obj.count,
+      'table-body__total-column');
 
   const createIconCell = () => {
     const newIconCell = document.createElement('td');
@@ -78,25 +81,29 @@ const createRow = obj => {
     if (obj.images.small === undefined && obj.images.big === undefined) {
       imageButton.classList.add('icon__button', 'table-body__no-image-button');
       imageButton.insertAdjacentHTML('beforeend', `
-        <image src="./images/table_no_image_icon.svg" alt="иконка - нет изображения"></image>
+        <image src="./images/table_no_image_icon.svg"
+        alt="иконка - нет изображения"></image>
       `);
     } else {
       imageButton.classList.add('icon__button', 'table-body__image-button');
       imageButton.insertAdjacentHTML('beforeend', `
-        <image src="./images/table_image_icon.svg" alt="иконка - есть изображение"></image>
+        <image src="./images/table_image_icon.svg"
+        alt="иконка - есть изображение"></image>
       `);
     }
 
     const editButton = document.createElement('button');
     editButton.classList.add('icon__button', 'table-body__edit-button');
     editButton.insertAdjacentHTML('beforeend', `
-      <image src="./images/table_edit_icon.svg" alt="иконка - отредактировать"></image>
+      <image src="./images/table_edit_icon.svg"
+      alt="иконка - отредактировать"></image>
     `);
 
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('icon__button', 'table-body__delete-button');
     deleteButton.insertAdjacentHTML('beforeend', `
-      <image src="./images/table_delete_icon.svg" alt="иконка - удалить"></image>
+      <image src="./images/table_delete_icon.svg"
+      alt="иконка - удалить"></image>
     `);
 
     newIconCell.append(imageButton, editButton, deleteButton);
@@ -108,7 +115,15 @@ const createRow = obj => {
   const iconColumn = createIconCell();
 
   const newRow = document.createElement('tr');
-  newRow.append(idColumn, nameColumn, categoryColumn, unitsColumn, countColumn, priceColumn, totalColumn, iconColumn);
+  newRow.append(
+      idColumn,
+      nameColumn,
+      categoryColumn,
+      unitsColumn,
+      countColumn,
+      priceColumn,
+      totalColumn,
+      iconColumn);
   newRow.classList.add('table-body__row');
 
   return newRow;
@@ -121,10 +136,38 @@ const renderGoods = arr => {
   // const table = document.querySelector('.table-body');
   // result.map(index => table.append(index));
 
-  const result =arr.map(createRow);
+  const result = arr.map(createRow);
 
   const table = document.querySelector('.table-body');
   table.append(...result);
 };
 
 renderGoods(goods);
+
+
+const deleteGoods = (id) => {
+  goods.map((item, index) => {
+    if (item.id === id) {
+      goods.splice(index, 1);
+    }
+  });
+
+  return goods;
+};
+
+const tableBody = document.querySelector('.table-body');
+
+tableBody.addEventListener('click', e => {
+  const target = e.target;
+
+  if (target.closest('.table-body__delete-button')) {
+    const row = target.closest('.table-body__row');
+    const id = +row.firstElementChild.innerText;
+
+    row.remove();
+
+    deleteGoods(id);
+
+    console.log(goods);
+  }
+});

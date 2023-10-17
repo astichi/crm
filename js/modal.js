@@ -15,37 +15,30 @@
 const getModalCloseElements = () => {
   const tableAddButton = document.querySelector('.tools-panel__submit-button');
   const modalOverlay = document.querySelector('.modal__main_overlay');
-  const modalForm = document.querySelector('.modal__main-box');
-  const modalCloseButton = document.querySelector('.modal__close-button');
 
   return {
     tableAddButton,
     modalOverlay,
-    modalForm,
-    modalCloseButton,
   };
 };
 
 const showCloseModal = () => {
   const elements = getModalCloseElements();
 
-  const {tableAddButton, modalOverlay, modalForm, modalCloseButton} = elements;
+  const {tableAddButton, modalOverlay} = elements;
 
   tableAddButton.addEventListener('click', () => {
     modalOverlay.classList.add('is-visible');
   });
 
-  modalForm.addEventListener('click', event => {
-    event.stopPropagation();
-  });
+  modalOverlay.addEventListener('click', e => {
+    const target = e.target;
 
-  modalCloseButton.addEventListener('click', () => {
-    modalOverlay.classList.remove('is-visible');
-  });
-
-  modalOverlay.addEventListener('click', () => {
-    modalOverlay.classList.remove('is-visible');
+    if (target === modalOverlay || target.closest('.modal__close-button')) {
+      modalOverlay.classList.remove('is-visible');
+    }
   });
 };
 
 showCloseModal();
+
