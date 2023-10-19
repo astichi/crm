@@ -124,6 +124,9 @@
       "error",
       "never"
     ],
+    "sourceType": [
+      "module"
+    ],
     //!-google
     "no-cond-assign": "off",
     "no-irregular-whitespace": "error",

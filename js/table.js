@@ -53,7 +53,7 @@ const goods = [
   }
 ];
 
-
+// создаём строку
 const createRow = obj => {
   const createCell = (val, name) => {
     const newCell = document.createElement('td');
@@ -70,10 +70,25 @@ const createRow = obj => {
   const unitsColumn = createCell(obj.units, 'table-body__units-column');
   const countColumn = createCell(obj.count, 'table-body__count-column');
   const priceColumn = createCell('$' + obj.price, 'table-body__price-column');
+
+  // сумма в колонке total с учетом скидки
+  const totalColumnPrice = () => {
+    let total;
+
+    if (obj.discont === false) {
+      total = obj.price * obj.count;
+    } else {
+      total = (obj.price * obj.count) - (obj.price * obj.count * obj.discont / 100);
+    }
+
+    return total;
+  };
+
   const totalColumn = createCell(
-      '$' + obj.price * obj.count,
+      '$' + totalColumnPrice(),
       'table-body__total-column');
 
+  // создаем ячейку с иконками
   const createIconCell = () => {
     const newIconCell = document.createElement('td');
 
@@ -129,22 +144,24 @@ const createRow = obj => {
   return newRow;
 };
 
+// добавляем объекты из goods в таблицу
+const table = document.querySelector('.table-body');
 
 const renderGoods = arr => {
-  // const result = arr.map(item => createRow(item));
-
-  // const table = document.querySelector('.table-body');
-  // result.map(index => table.append(index));
-
   const result = arr.map(createRow);
 
-  const table = document.querySelector('.table-body');
   table.append(...result);
 };
-
 renderGoods(goods);
 
+// добавляем продукт из модального в таблицу
+const renderNewProduct = newProduct => {
+  const result = createRow(newProduct);
 
+  table.append(result);
+};
+
+// удаляем обект из goods по id
 const deleteGoods = (id) => {
   goods.map((item, index) => {
     if (item.id === id) {
@@ -155,6 +172,7 @@ const deleteGoods = (id) => {
   return goods;
 };
 
+// удаляем строку из таблицы
 const tableBody = document.querySelector('.table-body');
 
 tableBody.addEventListener('click', e => {
@@ -169,5 +187,28 @@ tableBody.addEventListener('click', e => {
     deleteGoods(id);
 
     console.log(goods);
+    calculateTableTotalPrice();
   }
 });
+
+// считаем итоговую сумму в таблице
+const calculateTableTotalPrice = () => {
+  const tableTotalColumn = document.querySelectorAll('.table-body__total-column');
+  const tableTotalPrice = document.querySelector('.table__title_sum');
+  const newArr = [];
+
+  tableTotalColumn.forEach(item => {
+    newArr.push(+item.innerText.slice(1));
+  });
+
+  const result = newArr.reduce((acc, item) => {
+    return acc + item;
+  }, 0);
+
+  return tableTotalPrice.textContent = `$ ${result.toFixed(2)}`;
+};
+
+calculateTableTotalPrice();
+
+
+export {goods, renderNewProduct, calculateTableTotalPrice};

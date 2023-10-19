@@ -234,11 +234,12 @@
   grid-area: disc;
   width: 200px;
   height: 40px;
+  background-color: #eeeeee;
 }
 
-/* .form__input-discount:disabled {
-  background-color: #eeeeee;
-} */
+.form__input-checkbox:checked ~ * #discount {
+  background-color: #f4f2ff !important;
+}
 
 /* добавление изображения */
 .form__image-warning-text {

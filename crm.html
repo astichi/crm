@@ -16,8 +16,8 @@
   <link rel="preload" href="./fonts/Inter-Bold.woff" as="font" type="font/woff" crossorigin>
   <link rel="stylesheet" href="./styles/style.css">
 
-  <script defer src="./js/modal.js"></script>
-  <script defer src="./js/table.js"></script>
+  <script defer type="module" src="./js/modal.js"></script>
+  <script defer type="module" src="./js/table.js"></script>
 </head>
 
 <body>
@@ -59,27 +59,27 @@
                 <div class="form__container">
                   <label class="form__label form__label-name">
                     <span class="form__label-text">Наименование</span>
-                    <input class="form__input" type="text" name="name">
+                    <input class="form__input" type="text" name="name" required>
                   </label>
     
                   <label class="form__label form__label-description">
                     <span class="form__label-text">Описание</span>
-                    <textarea class="form__textarea" name="description"></textarea>
+                    <textarea class="form__textarea" name="description" required></textarea>
                   </label>
     
                   <label class="form__label form__label-category">
                     <span class="form__label-text">Категория</span>
-                    <input class="form__input" type="text" name="category">
+                    <input class="form__input" type="text" name="category" required>
                   </label>
     
                   <label class="form__label form__label-units">
                     <span class="form__label-text">Единицы измерения</span>
-                    <input class="form__input" type="text" name="units">
+                    <input class="form__input" type="text" name="units" required>
                   </label>
     
                   <label class="form__label form__label-count">
                     <span class="form__label-text">Количество</span>
-                    <input class="form__input" type="number" name="count">
+                    <input class="form__input" type="number" name="count" required>
                   </label>
     
                   <div class="form__label form__label-discount">
@@ -87,20 +87,22 @@
                       <span>Дисконт</span>
                     </label>
                     <div class="checkbox">
-                      <input class="form__input-checkbox" type="checkbox" name="checkbox">
-                      <input class="form__input form__input-discount" type="text" name="discount">
+                      <input class="form__input-checkbox" type="checkbox" name="checkbox" id="checkbox">
+                      <label>
+                        <input class="form__input form__input-discount" type="number" name="discont" id="discount" disabled required>
+                      </label>
                     </div> 
                   </div>
 
                   <label class="form__label form__label-price">
                     <span class="form__label-text">Цена</span>
-                    <input class="form__input" type="number" name="price"> 
+                    <input class="form__input" type="number" name="price" required> 
                   </label>
     
                   <p class="form__image-warning-text">Изображение не должно превышать размер 1мб</p>
     
                   <label class="form__image-upload">Добавить изображение
-                    <input class="form__image-button" type="file" name="image" accept="image/*">
+                    <input class="form__image-button" type="file" name="images" accept="image/*">
                   </label>
                 </div>
   
@@ -115,7 +117,7 @@
               </fieldset>
   
               <div class="form__total total">
-                <p class="total__text">Итоговая стоимость: <span class="total__sum">$ 900.00</span></p>
+                <p class="total__text">Итоговая стоимость: <span class="total__sum">$ 0.00</span></p>
                 <button class="form__submit-button" type="submit">Добавить товар</button>
               </div>
         </form>
@@ -127,7 +129,7 @@
     <div class="table__container">  
       <div class="table__title">
         <h2 class="table__title_cms">cms</h2>
-        <p class="table__title_total">Итоговая стоимость: <span class="table__title_sum">$ 900.00</span></p>
+        <p class="table__title_total">Итоговая стоимость: <span class="table__title_sum">$ 0.00</span></p>
       </div>
   
       <div class="table__box">
@@ -197,7 +199,7 @@
                 <td class="table-body__units-column">шт</td>
                 <td class="table-body__count-column">12</td>
                 <td class="table-body__price-column">$14</td>
-                <td class="table-body__total-column">$68</td>
+                <td class="table-body__total-column">$168</td>
                 <td class="table-body__icon-column">
                   <button class="table-body__image-button icon__button">
                     <image src="./images/table_image_icon.svg" alt="иконка - есть изображение"></image>
