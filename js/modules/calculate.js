@@ -13,18 +13,24 @@ const calculateTableTotal = (tableTotalPrice) => {
   return tableTotalPrice.textContent = `$ ${result.toFixed(2)}`;
 };
 
+const calculateDiscount = (price, count, discont) => {
+  let total = price * count;
+
+  if (discont && discont !== false) {
+    total -= price * count * discont / 100;
+  }
+
+  return total;
+};
+
 const calculateFormTotal = (form, formTotal) => {
   form.addEventListener('change', () => {
-    let total;
-    total = form.price.value * form.count.value;
+    const totalPrice =
+      calculateDiscount(form.price.value, form.count.value, form.discont.value);
 
-    if (form.discount.value) {
-      total -= form.price.value * form.count.value * form.discount.value / 100;
-    }
-
-    formTotal.textContent = '$ ' + total.toFixed(2);
+    formTotal.textContent = '$ ' + totalPrice.toFixed(2);
   });
 };
 
 
-export {calculateTableTotal, calculateFormTotal};
+export {calculateTableTotal, calculateDiscount, calculateFormTotal};

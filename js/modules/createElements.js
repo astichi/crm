@@ -1,4 +1,5 @@
 import {goods} from './data.js';
+import {calculateDiscount} from './calculate.js';
 
 
 const createRow = obj => {
@@ -18,22 +19,8 @@ const createRow = obj => {
   const countColumn = createCell(obj.count, 'table-body__count-column');
   const priceColumn = createCell('$' + obj.price, 'table-body__price-column');
 
-  // сумма в колонке total с учетом скидки
-  const totalColumnPrice = () => {
-    let total;
-
-    if (obj.discont === false) {
-      total = obj.price * obj.count;
-    } else {
-      total = (obj.price * obj.count) -
-        (obj.price * obj.count * obj.discont / 100);
-    }
-
-    return total;
-  };
-
   const totalColumn = createCell(
-      '$' + totalColumnPrice(),
+      '$' + calculateDiscount(obj.price, obj.count, obj.discont),
       'table-body__total-column');
 
   // создаем ячейку с иконками
