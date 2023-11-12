@@ -17,7 +17,7 @@ const addNewGoods = (form, id, closeModal, table, tableTotalPrice) => {
     if (!form.discont.value) {
       newGoods.discont = false;
     }
-    newGoods.images = {};
+    // newGoods.images = {};
 
     goods.push(newGoods);
     renderNewGoods(newGoods, table);

@@ -22,7 +22,6 @@ const getTableElements = () => {
   const tableBody = document.querySelector('.table-body');
   const tableTotalPrice = document.querySelector('.table__title_sum');
 
-
   return {
     tableAddButton,
     table,

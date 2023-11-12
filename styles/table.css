@@ -296,6 +296,15 @@ td {
   background-color: #f4f2ff;
 }
 
+.table-body__no-image-button {
+  cursor: auto;
+}
+
+.table-body__no-image-button:hover,
+.table-body__no-image-button:active {
+  background-color: #ffffff;
+}
+
 /* нижняя часть таблицы */
 .footer {
   padding: 15px 20px;

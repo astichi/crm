@@ -28,19 +28,25 @@ const createRow = obj => {
     const newIconCell = document.createElement('td');
 
     const imageButton = document.createElement('button');
-    if (obj.images.small === undefined && obj.images.big === undefined) {
-      imageButton.classList.add('icon__button', 'table-body__no-image-button');
-      imageButton.insertAdjacentHTML('beforeend', `
-        <image src="./images/table_no_image_icon.svg"
-        alt="иконка - нет изображения"></image>
-      `);
-    } else {
-      imageButton.classList.add('icon__button', 'table-body__image-button');
-      imageButton.insertAdjacentHTML('beforeend', `
-        <image src="./images/table_image_icon.svg"
-        alt="иконка - есть изображение"></image>
-      `);
-    }
+    // if (obj.images.small === undefined && obj.images.big === undefined) {
+    //   imageButton.classList.add('icon__button', 'table-body__no-image-button');
+    //   imageButton.insertAdjacentHTML('beforeend', `
+    //     <image src="./images/table_no_image_icon.svg"
+    //     alt="иконка - нет изображения"></image>
+    //   `);
+    // } else {
+    //   imageButton.classList.add('icon__button', 'table-body__image-button');
+    //   imageButton.insertAdjacentHTML('beforeend', `
+    //     <image src="./images/table_image_icon.svg"
+    //     alt="иконка - есть изображение"></image>
+    //   `);
+    // }
+
+    imageButton.classList.add('icon__button', 'table-body__image-button');
+    imageButton.insertAdjacentHTML('beforeend', `
+      <image src="./images/table_image_icon.svg"
+      alt="иконка - есть изображение"></image>
+    `);
 
     const editButton = document.createElement('button');
     editButton.classList.add('icon__button', 'table-body__edit-button');
@@ -75,6 +81,7 @@ const createRow = obj => {
       totalColumn,
       iconColumn);
   newRow.classList.add('table-body__row');
+  newRow.dataset.pic = '../../images/test_image.jpg';
 
   return newRow;
 };

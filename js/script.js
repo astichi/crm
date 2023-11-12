@@ -7,6 +7,7 @@ import {
   controlModal,
   controlCheckbox,
   controlDelete,
+  controlImagePopup,
 } from './modules/control.js';
 
 
@@ -32,6 +33,7 @@ const init = () => {
 
   controlCheckbox(formCheckbox, formDiscount);
   controlDelete(tableBody, tableTotalPrice);
+  controlImagePopup(tableBody);
 
   renderGoods(goods, table);
 

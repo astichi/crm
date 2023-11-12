@@ -66,5 +66,21 @@ const controlDelete = (tableBody, tableTotalPrice) => {
   });
 };
 
+const controlImagePopup = (tableBody) => {
+  tableBody.addEventListener('click', e => {
+    const target = e.target;
+    const tableRow = target.closest('.table-body__row');
 
-export {controlModal, controlCheckbox, controlDelete};
+    if (target.closest('.table-body__image-button')) {
+      open(tableRow.dataset.pic, 'test', `
+        width=600,
+        height=600,
+        left=${window.screen.width / 2 - 300},
+        top=${window.screen.height / 2 - 300}
+      `);
+    }
+  });
+};
+
+
+export {controlModal, controlCheckbox, controlDelete, controlImagePopup};
