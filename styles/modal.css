@@ -1,4 +1,3 @@
-
 /* modal overlay */
 .modal__main_overlay {
   position: fixed;
@@ -49,13 +48,13 @@
 }
 
 .modal__close-button:hover > svg > path{
-  stroke: #d80101;
-  transition: .4s ease-in-out;
+  stroke: #c6c2de;
+  transition: .3s ease-in-out;
 }
 
 .modal__close-button:active > svg > path{
-  stroke: #f3b6b6;
-  transition: .4s ease-in-out;
+  stroke: #ffffff;
+  transition: .3s ease-in-out;
 }
 
 /* заголовок формы */
@@ -316,6 +315,23 @@
   white-space: nowrap;
 }
 
+.total__wrapper {
+  position: relative;
+}
+.total__error.error-visible {
+  display: block;
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #d80101;
+}
 /* изображение товара */
 .form__product {
   display: flex;

@@ -1,46 +1,45 @@
-import {goods} from './data.js';
-import {calculateTableTotal} from './calculate.js';
-import {deleteGoods} from './goodsControl.js';
-import {renderId} from './render.js';
+import {postGoods, deleteGoods} from './serviceAPI.js';
+import {
+  form,
+  formOverlay,
+  formCheckbox,
+  formDiscount,
+  formTotal,
+  formError,
+  tableBody,
+  tableAddButton,
+  modalErrorOverlay,
+  modalSucsessOverlay} from './getElements.js';
 
 
-const controlModal = (
-    tableAddButton,
-    modalOverlay,
-    form,
-    formDiscount,
-    formTotal) => {
-  const openModal = () => {
-    modalOverlay.classList.add('is-visible');
-    renderId();
-  };
-
-  const closeModal = () => {
-    modalOverlay.classList.remove('is-visible');
-    formDiscount.disabled = true;
-    formTotal.textContent = '$ 0.00';
-  };
-
-  tableAddButton.addEventListener('click', openModal);
-
-  modalOverlay.addEventListener('click', e => {
-    const target = e.target;
-
-    if (target === modalOverlay || target.closest('.modal__close-button')) {
-      form.reset();
-      closeModal();
-    }
-  });
-
-  return {
-    closeModal,
-  };
+// форма
+const openFormModal = () => {
+  formOverlay.classList.add('is-visible');
 };
 
-const controlCheckbox = (formCheckbox, formDiscount) => {
-  formCheckbox.addEventListener('click', e => {
-    const target = e.target;
+const closeFormModal = () => {
+  formOverlay.classList.remove('is-visible');
+  formDiscount.disabled = true;
+  formTotal.textContent = '$ 0.00';
+  formError.classList.remove('error-visible');
+  formError.textContent = '';
+  form.reset();
+};
 
+const controlFormModal = () => {
+  tableAddButton.addEventListener('click', openFormModal);
+
+  formOverlay.addEventListener('click', ({target}) => {
+    if (target === formOverlay || target.closest('.modal__close-button')) {
+      form.reset();
+      closeFormModal();
+    }
+  });
+};
+
+// чекбокс
+const controlCheckbox = () => {
+  formCheckbox.addEventListener('click', ({target}) => {
     if (target.checked) {
       formDiscount.disabled = false;
     } else {
@@ -50,25 +49,58 @@ const controlCheckbox = (formCheckbox, formDiscount) => {
   });
 };
 
-const controlDelete = (tableBody, tableTotalPrice) => {
-  tableBody.addEventListener('click', e => {
-    const target = e.target;
+// окно ошибки, успешного добавления
+const openSucsessModal = () => {
+  modalSucsessOverlay.classList.add('modal-visible');
+};
 
-    if (target.closest('.table-body__delete-button')) {
-      const row = target.closest('.table-body__row');
-      const id = +row.firstElementChild.innerText;
+const closeSucsessModal = () => {
+  modalSucsessOverlay.classList.remove('modal-visible');
+};
 
-      row.remove();
-      deleteGoods(id);
-      console.log(goods);
-      calculateTableTotal(tableTotalPrice);
+const openErrorModal = () => {
+  modalErrorOverlay.classList.add('modal-visible');
+};
+
+const closeErrorModal = () => {
+  modalErrorOverlay.classList.remove('modal-visible');
+};
+
+const controlErrorModal = () => {
+  modalErrorOverlay.addEventListener('click', ({target}) => {
+    if (target === modalErrorOverlay ||
+        target.closest('.error__close-button')) {
+      closeErrorModal();
     }
   });
 };
 
-const controlImagePopup = (tableBody) => {
-  tableBody.addEventListener('click', e => {
-    const target = e.target;
+// добавление товара
+const controlPostGoods = () => {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const newGoods = Object.fromEntries(formData);
+
+    postGoods(newGoods);
+  });
+};
+
+// удаление товара
+const controlDeleteGoods = () => {
+  tableBody.addEventListener('click', ({target}) => {
+    if (target.closest('.table-body__delete-button')) {
+      const row = target.closest('.table-body__row');
+
+      deleteGoods(row.dataset.id);
+    }
+  });
+};
+
+// окно с изображением
+const controlImagePopup = () => {
+  tableBody.addEventListener('click', ({target}) => {
     const tableRow = target.closest('.table-body__row');
 
     if (target.closest('.table-body__image-button')) {
@@ -83,4 +115,14 @@ const controlImagePopup = (tableBody) => {
 };
 
 
-export {controlModal, controlCheckbox, controlDelete, controlImagePopup};
+export {
+  closeFormModal,
+  openSucsessModal,
+  closeSucsessModal,
+  controlFormModal,
+  controlPostGoods,
+  controlCheckbox,
+  controlDeleteGoods,
+  controlImagePopup,
+  openErrorModal,
+  controlErrorModal};

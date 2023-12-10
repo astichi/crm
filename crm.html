@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CRM</title>  
+  <title>CRM</title>
+  <link type="image/svg+xml" rel="icon" href="./images/favicon.png">
   <link rel="preload" href="./fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="./fonts/Inter-Regular.woff" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="./fonts/Inter-Medium.woff2" as="font" type="font/woff2" crossorigin>
@@ -21,22 +22,9 @@
 
 <body>
   <section class="modal">
-    <div class="modal__error modal__error_overlay">
-      <div class="error">
-        <button class="error__close-button" type="button">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L22 22" stroke="#6E6893" stroke-width="3" stroke-linecap="round"/>
-            <path d="M2 22L22 2" stroke="#6E6893" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-        </button>
-  
-        <svg class="error__image" width="94" height="94" viewBox="0 0 94 94" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2 2L92 92" stroke="#D80101" stroke-width="3" stroke-linecap="round"/>
-          <path d="M2 92L92 2" stroke="#D80101" stroke-width="3" stroke-linecap="round"/>
-        </svg>
-  
-        <p class="error__text">Что-то пошло не так</p>
-      </div>
+    <div class="modal-error__overlay">
+    </div>
+    <div class="modal-sucsess__overlay">
     </div>
 
     <div class="modal__main modal__main_overlay">
@@ -51,7 +39,8 @@
         <form class="modal__form form" action="https://jsonplaceholder.typicode.com/posts" method="POST">
             <div class="form__title">
               <h2 class="form__title-text">Добавить товар</h2>
-              <p class="form__title-id">id: <span class="form__id-number">201910241</span></p>
+              <!-- <p class="form__title-id">id: <span class="form__id-number">201910241</span></p> -->
+              <p class="form__title-id"></p>
             </div>
   
               <fieldset class="form__box">
@@ -88,7 +77,7 @@
                     <div class="checkbox">
                       <input class="form__input-checkbox" type="checkbox" name="checkbox" id="checkbox">
                       <label>
-                        <input class="form__input form__input-discount" type="number" name="discont" id="discount" disabled required>
+                        <input class="form__input form__input-discount" type="number" name="discount" id="discount" disabled required>
                       </label>
                     </div> 
                   </div>
@@ -101,7 +90,7 @@
                   <p class="form__image-warning-text">Изображение не должно превышать размер 1мб</p>
     
                   <label class="form__image-upload">Добавить изображение
-                    <input class="form__image-button" type="file" name="images" accept="image/*">
+                    <input class="form__image-button" type="file" name="image" accept="image/*">
                   </label>
                 </div>
   
@@ -117,7 +106,10 @@
   
               <div class="form__total total">
                 <p class="total__text">Итоговая стоимость: <span class="total__sum">$ 0.00</span></p>
-                <button class="form__submit-button" type="submit">Добавить товар</button>
+                <div class="total__wrapper">
+                  <p class="total__error"></p>
+                  <button class="form__submit-button" type="submit">Добавить товар</button>
+                </div>
               </div>
         </form>
       </div>

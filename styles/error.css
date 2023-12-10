@@ -1,18 +1,28 @@
-.modal__error {
-  display: none;
+.modal-error__overlay,
+.modal-sucsess__overlay {
+  opacity: 0;
+  visibility: hidden;
+  transition: .5s ease-in-out;
 }
 
-/* error overlay */
-.modal__error_overlay {
+.modal-error__overlay.modal-visible,
+.modal-sucsess__overlay.modal-visible {
   position: fixed;
   width: 100%;
   height: 100%;
   background-color: rgba(24, 5, 58, 0.2);
   z-index: 2;
+  opacity: 1;
+  visibility: visible;
 }
 
-/* окно ошибки */
-.error {
+.modal-error__overlay.modal-visible .error,
+.modal-sucsess__overlay.modal-visible .sucsess {
+  opacity: 1;
+}
+
+.error,
+.sucsess {
   padding: 109px 47px 96px;
   position: relative;
   width: 350px;
@@ -24,6 +34,8 @@
   top: 35%;
   left: 50%;
   transform: translate(-50%, -35%);
+  opacity: 0;
+  transition: .5s ease-in-out;
 }
 
 .error__close-button {
@@ -35,20 +47,24 @@
 }
 
 .error__close-button:hover > svg > path{
-  stroke: #d80101;
-  transition: .4s ease-in-out;
+  stroke: #c6c2de;
+  transition: .3s ease-in-out;
 }
 
 .error__close-button:active > svg > path{
-  stroke: #f3b6b6;
-  transition: .4s ease-in-out;
+  stroke: #ffffff;
+  transition: .3s ease-in-out;
 }
 
-.error__image {
+.error__image,
+.sucsess__image {
   margin-bottom: 33px;
+  display: flex;
+  justify-content: center;
 }
 
-.error__text {
+.error__text,
+.sucsess__text {
   text-transform: uppercase;
   letter-spacing: 1.8px;
   font-weight: 700;
@@ -57,19 +73,25 @@
 }
 
 @media (max-width: 750px) {
-  .error {
+  .error,
+  .sucsess {
     width: 290px;
     height: 290px;
-    padding: 100px 42px 80px;
+    padding: 100px 42px 65px;
   }
 
-  .error__image {
+  .error__image > svg {
     width: 70px;
     height: 70px;
-    margin-bottom: 15px;
   }
 
-  .error__text {
+  .sucsess__image > svg {
+    width: 77px;
+    height: 63px;
+  }
+
+  .error__text,
+  .sucsess__text {
     font-size: 14px;
     line-height: 18px;
   }

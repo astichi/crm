@@ -1,48 +1,35 @@
-import {goods} from './modules/data.js';
-import {calculateTableTotal, calculateFormTotal} from './modules/calculate.js';
-import {getModalElements, getTableElements} from './modules/getElements.js';
-import {renderGoods} from './modules/render.js';
-import {addNewGoods} from './modules/goodsControl.js';
+import {calculateFormTotal} from './modules/calculate.js';
 import {
-  controlModal,
+  controlFormModal,
   controlCheckbox,
-  controlDelete,
+  controlPostGoods,
+  controlDeleteGoods,
   controlImagePopup,
-} from './modules/control.js';
+  controlErrorModal} from './modules/control.js';
+import {getGoods, getTableTotal} from './modules/serviceAPI.js';
+import {
+  createErrorModal,
+  createSucsessModal} from './modules/createElements.js';
 
 
 const init = () => {
-  const {
-    modalOverlay,
-    id,
-    form,
-    formCheckbox,
-    formDiscount,
-    formTotal,
-  } = getModalElements();
+  createErrorModal();
+  createSucsessModal();
 
-  const {
-    tableAddButton,
-    table,
-    tableBody,
-    tableTotalPrice,
-  } = getTableElements();
+  calculateFormTotal();
 
-  const {closeModal} =
-    controlModal(tableAddButton, modalOverlay, form, formDiscount, formTotal);
+  controlFormModal();
+  controlCheckbox();
 
-  controlCheckbox(formCheckbox, formDiscount);
-  controlDelete(tableBody, tableTotalPrice);
-  controlImagePopup(tableBody);
+  controlPostGoods();
+  controlDeleteGoods();
 
-  renderGoods(goods, table);
+  controlImagePopup();
 
-  addNewGoods(form, id, closeModal, table, tableTotalPrice);
+  controlErrorModal();
 
-  calculateTableTotal(tableTotalPrice);
-  calculateFormTotal(form, formTotal);
-
-  console.log(goods);
+  getGoods();
+  getTableTotal();
 };
 
 init();

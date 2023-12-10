@@ -1,34 +1,17 @@
-const getModalElements = () => {
-  const modalOverlay = document.querySelector('.modal__main_overlay');
-  const id = document.querySelector('.form__id-number');
-  const form = document.querySelector('.modal__form');
-  const formCheckbox = document.querySelector('.form__input-checkbox');
-  const formDiscount = document.querySelector('.form__input-discount');
-  const formTotal = document.querySelector('.total__sum');
+export const form = document.querySelector('.modal__form');
+export const formOverlay = document.querySelector('.modal__main_overlay');
+export const formId = document.querySelector('.form__id-number');
+export const formCheckbox = document.querySelector('.form__input-checkbox');
+export const formDiscount = document.querySelector('.form__input-discount');
+export const formTotal = document.querySelector('.total__sum');
+export const formError = document.querySelector('.total__error');
 
-  return {
-    modalOverlay,
-    id,
-    form,
-    formCheckbox,
-    formDiscount,
-    formTotal,
-  };
-};
+export const tableBody = document.querySelector('.table-body');
+export const tableTotal = document.querySelector('.table__title_sum');
+export const tableAddButton =
+  document.querySelector('.tools-panel__submit-button');
 
-const getTableElements = () => {
-  const tableAddButton = document.querySelector('.tools-panel__submit-button');
-  const table = document.querySelector('.table-body');
-  const tableBody = document.querySelector('.table-body');
-  const tableTotalPrice = document.querySelector('.table__title_sum');
-
-  return {
-    tableAddButton,
-    table,
-    tableBody,
-    tableTotalPrice,
-  };
-};
-
-
-export {getModalElements, getTableElements};
+export const modalErrorOverlay =
+  document.querySelector('.modal-error__overlay');
+export const modalSucsessOverlay =
+  document.querySelector('.modal-sucsess__overlay');

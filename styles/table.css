@@ -241,7 +241,7 @@ td {
 
 .table-body__name-column {
   padding: 15px 7px 15px 8px;
-  white-space: nowrap;
+  min-width: 300px;
 }
 
 .table-body__category-column {
@@ -262,21 +262,25 @@ td {
 .table-body__price-column {
   padding: 15px 7px 15px 8px;
   text-align: right;
+  white-space: nowrap;
 }
 
 .table-body__total-column {
   padding: 15px 7px 15px 8px;
   text-align: center;
+  white-space: nowrap;
 }
 
 .table-body__icon-column {
   padding: 15px 15px 15px 8px;
+}
+
+.icons-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
 }
-
 .icon__button {
   border: none;
   border-radius: 3px;

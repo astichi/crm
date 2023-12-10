@@ -1,36 +1,27 @@
-const calculateTableTotal = (tableTotalPrice) => {
-  const tableTotalColumn =
-    document.querySelectorAll('.table-body__total-column');
+import {form, formTotal} from './getElements.js';
 
-  const newArr = [];
 
-  tableTotalColumn.forEach(item => {
-    newArr.push(+item.innerText.slice(1));
-  });
-
-  const result = newArr.reduce((acc, item) => acc + item, 0);
-
-  return tableTotalPrice.textContent = `$ ${result.toFixed(2)}`;
-};
-
-const calculateDiscount = (price, count, discont) => {
+const calculateDiscount = (price, count, discount) => {
   let total = price * count;
 
-  if (discont && discont !== false) {
-    total -= price * count * discont / 100;
+  if (discount && discount !== false) {
+    total -= price * count * discount / 100;
   }
 
   return total;
 };
 
-const calculateFormTotal = (form, formTotal) => {
+const calculateFormTotal = () => {
   form.addEventListener('change', () => {
     const totalPrice =
-      calculateDiscount(form.price.value, form.count.value, form.discont.value);
+      calculateDiscount(
+          form.price.value,
+          form.count.value,
+          form.discount.value);
 
-    formTotal.textContent = '$ ' + totalPrice.toFixed(2);
+    formTotal.textContent = `$ ${totalPrice.toFixed(2)}`;
   });
 };
 
 
-export {calculateTableTotal, calculateDiscount, calculateFormTotal};
+export {calculateDiscount, calculateFormTotal};

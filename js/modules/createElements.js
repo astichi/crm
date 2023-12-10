@@ -1,119 +1,65 @@
-import {goods} from './data.js';
 import {calculateDiscount} from './calculate.js';
+import {tableIcons, modalIcons, closeIcon} from './svg.js';
+import {modalErrorOverlay, modalSucsessOverlay} from './getElements.js';
 
 
-const createRow = obj => {
-  const createCell = (val, name) => {
-    const newCell = document.createElement('td');
-    newCell.append(val);
-    newCell.classList.add(name);
+const createTableRow = obj => {
+  const row = document.createElement('tr');
+  row.classList.add('table-body__row');
+  row.insertAdjacentHTML('beforeend', `
+    <td class="table-body__id-column">${obj.id}</td>
+    <td class="table-body__name-column">${obj.title}</td>
+    <td class="table-body__category-column">${obj.category}</td>
+    <td class="table-body__units-column">${obj.units}</td>
+    <td class="table-body__count-column">${obj.count}</td>
+    <td class="table-body__price-column">$ ${obj.price}</td>
+    <td class="table-body__total-column">$
+      ${calculateDiscount(obj.price, obj.count, obj.discount)}</td>
+    <td class="table-body__icon-column">
+      <div class="icons-wrapper">
+        <button type="button" class="icon__button
+          ${obj.image === 'image/notimage.jpg' ? 'table-body__no-image-button' :
+            'table-body__image-button'}">
+          ${obj.image === 'image/notimage.jpg' ? tableIcons.noimage :
+            tableIcons.image}
+        </button>
+        <button type="button" class="icon__button
+          table-body__edit-button">${tableIcons.edit}</button>
+        <button type="button" class="icon__button
+          table-body__delete-button">${tableIcons.delete}</button>
+      </div>    
+    </td>
+  `);
 
-    return newCell;
-  };
+  row.dataset.id = obj.id;
+  row.dataset.pic = '../../images/test_image.jpg';
+  // row.dataset.pic = obj.image;
 
-  const idColumn = createCell(obj.id, 'table-body__id-column');
-  const nameColumn = createCell(obj.title, 'table-body__name-column');
-  const categoryColumn = createCell(
-      obj.category, 'table-body__category-column');
-  const unitsColumn = createCell(obj.units, 'table-body__units-column');
-  const countColumn = createCell(obj.count, 'table-body__count-column');
-  const priceColumn = createCell('$' + obj.price, 'table-body__price-column');
-
-  const totalColumn = createCell(
-      '$' + calculateDiscount(obj.price, obj.count, obj.discont),
-      'table-body__total-column');
-
-  // создаем ячейку с иконками
-  const createIconCell = () => {
-    const newIconCell = document.createElement('td');
-
-    const imageButton = document.createElement('button');
-    // if (obj.images.small === undefined && obj.images.big === undefined) {
-    //   imageButton.classList.add('icon__button', 'table-body__no-image-button');
-    //   imageButton.insertAdjacentHTML('beforeend', `
-    //     <image src="./images/table_no_image_icon.svg"
-    //     alt="иконка - нет изображения"></image>
-    //   `);
-    // } else {
-    //   imageButton.classList.add('icon__button', 'table-body__image-button');
-    //   imageButton.insertAdjacentHTML('beforeend', `
-    //     <image src="./images/table_image_icon.svg"
-    //     alt="иконка - есть изображение"></image>
-    //   `);
-    // }
-
-    imageButton.classList.add('icon__button', 'table-body__image-button');
-    imageButton.insertAdjacentHTML('beforeend', `
-      <image src="./images/table_image_icon.svg"
-      alt="иконка - есть изображение"></image>
-    `);
-
-    const editButton = document.createElement('button');
-    editButton.classList.add('icon__button', 'table-body__edit-button');
-    editButton.insertAdjacentHTML('beforeend', `
-      <image src="./images/table_edit_icon.svg"
-      alt="иконка - отредактировать"></image>
-    `);
-
-    const deleteButton = document.createElement('button');
-    deleteButton.classList.add('icon__button', 'table-body__delete-button');
-    deleteButton.insertAdjacentHTML('beforeend', `
-      <image src="./images/table_delete_icon.svg"
-      alt="иконка - удалить"></image>
-    `);
-
-    newIconCell.append(imageButton, editButton, deleteButton);
-    newIconCell.classList.add('table-body__icon-column');
-
-    return newIconCell;
-  };
-
-  const iconColumn = createIconCell();
-
-  const newRow = document.createElement('tr');
-  newRow.append(
-      idColumn,
-      nameColumn,
-      categoryColumn,
-      unitsColumn,
-      countColumn,
-      priceColumn,
-      totalColumn,
-      iconColumn);
-  newRow.classList.add('table-body__row');
-  newRow.dataset.pic = '../../images/test_image.jpg';
-
-  return newRow;
+  return row;
 };
 
-const createId = () => {
-  const getRandomNumber = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
+const createErrorModal = () => {
+  modalErrorOverlay.insertAdjacentHTML('beforeend', `
+    <div class="modal__error error">
+      <button class="error__close-button" type="button">${closeIcon}</button>
+      <div class="error__image">${modalIcons.error}</div>
+      <p class="error__text">Что-то пошло не так</p>
+    </div>
+  `);
 
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
+  return modalErrorOverlay;
+};
 
-  let idNumber = getRandomNumber(100000000, 999999999);
-  let isId;
+const createSucsessModal = () => {
+  modalSucsessOverlay.insertAdjacentHTML('beforeend', `
+    <div class="modal__sucsess sucsess">
+      <div class="sucsess__image">${modalIcons.sucsess}</div>
+      <p class="sucsess__text">Данные успешно добавлены</p>
+    </div>
+  `);
 
-  try {
-    goods.map(item => {
-      if (item.id === idNumber) {
-        isId = true;
-      }
-    });
-
-    if (isId) {
-      return createId();
-    }
-  } catch {
-    console.error('Закончились уникальные ID');
-    idNumber = null;
-  }
-
-  return idNumber;
+  return modalSucsessOverlay;
 };
 
 
-export {createRow, createId};
+export {createTableRow, createErrorModal, createSucsessModal};
