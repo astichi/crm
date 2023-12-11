@@ -281,6 +281,7 @@ td {
   align-items: center;
   gap: 20px;
 }
+
 .icon__button {
   border: none;
   border-radius: 3px;
@@ -298,15 +299,6 @@ td {
 
 .icon__button:active {
   background-color: #f4f2ff;
-}
-
-.table-body__no-image-button {
-  cursor: auto;
-}
-
-.table-body__no-image-button:hover,
-.table-body__no-image-button:active {
-  background-color: #ffffff;
 }
 
 /* нижняя часть таблицы */

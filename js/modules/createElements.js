@@ -17,9 +17,7 @@ const createTableRow = obj => {
       ${calculateDiscount(obj.price, obj.count, obj.discount)}</td>
     <td class="table-body__icon-column">
       <div class="icons-wrapper">
-        <button type="button" class="icon__button
-          ${obj.image === 'image/notimage.jpg' ? 'table-body__no-image-button' :
-            'table-body__image-button'}">
+        <button type="button" class="icon__button table-body__image-button">
           ${obj.image === 'image/notimage.jpg' ? tableIcons.noimage :
             tableIcons.image}
         </button>
@@ -32,8 +30,9 @@ const createTableRow = obj => {
   `);
 
   row.dataset.id = obj.id;
-  row.dataset.pic = '../../images/test_image.jpg';
-  // row.dataset.pic = obj.image;
+  row.dataset.pic = obj.image === 'image/notimage.jpg' ?
+    '../../images/no-image.jpg' :
+    `http://principled-iced-confidence.glitch.me/${obj.image}`;
 
   return row;
 };

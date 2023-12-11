@@ -1,5 +1,4 @@
 import {URL} from './const.js';
-// import {formError} from './getElements.js';
 import {
   renderGoods,
   renderNewGoods,

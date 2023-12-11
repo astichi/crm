@@ -3,12 +3,17 @@ import {tableBody, tableTotal, formError} from './getElements.js';
 import {
   openErrorModal,
   closeFormModal,
-  openSucsessModal,
-  closeSucsessModal} from './control.js';
+  controlSucsessModal} from './control.js';
 import {getTableTotal} from './serviceAPI.js';
 
 
 const renderGoods = (err, data) => {
+  if (err) {
+    console.warn(err, data);
+    openErrorModal();
+    return;
+  }
+
   try {
     tableBody.textContent = '';
 
@@ -18,28 +23,9 @@ const renderGoods = (err, data) => {
     console.warn(err);
     openErrorModal();
   }
-
-  if (err) {
-    console.warn(err, data);
-    openErrorModal();
-    return;
-  }
 };
 
 const renderNewGoods = (err, data) => {
-  try {
-    const result = createTableRow(data);
-    tableBody.append(result);
-
-    getTableTotal();
-    closeFormModal();
-    openSucsessModal();
-    setTimeout(closeSucsessModal, 2000);
-  } catch (err) {
-    console.warn(err);
-    openErrorModal();
-  }
-
   if (err) {
     if (err.name !== 'Error') {
       console.warn(err, data);
@@ -57,6 +43,18 @@ const renderNewGoods = (err, data) => {
       openErrorModal();
       return;
     }
+  }
+
+  try {
+    const result = createTableRow(data);
+    tableBody.append(result);
+
+    getTableTotal();
+    closeFormModal();
+    controlSucsessModal();
+  } catch (err) {
+    console.warn(err);
+    openErrorModal();
   }
 };
 

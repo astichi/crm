@@ -8,8 +8,8 @@ import {
   formError,
   tableBody,
   tableAddButton,
-  modalErrorOverlay,
-  modalSucsessOverlay} from './getElements.js';
+  modalErrorOverlay} from './getElements.js';
+import {createSucsessModal} from './createElements.js';
 
 
 // форма
@@ -50,12 +50,15 @@ const controlCheckbox = () => {
 };
 
 // окно ошибки, успешного добавления
-const openSucsessModal = () => {
-  modalSucsessOverlay.classList.add('modal-visible');
-};
+const controlSucsessModal = () => {
+  const modal = createSucsessModal();
 
-const closeSucsessModal = () => {
-  modalSucsessOverlay.classList.remove('modal-visible');
+  modal.classList.add('modal-visible');
+
+  setTimeout(() => {
+    modal.classList.remove('modal-visible');
+    modal.remove();
+  }, 2000);
 };
 
 const openErrorModal = () => {
@@ -117,12 +120,11 @@ const controlImagePopup = () => {
 
 export {
   closeFormModal,
-  openSucsessModal,
-  closeSucsessModal,
   controlFormModal,
   controlPostGoods,
   controlCheckbox,
   controlDeleteGoods,
   controlImagePopup,
+  controlSucsessModal,
   openErrorModal,
   controlErrorModal};
