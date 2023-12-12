@@ -253,6 +253,11 @@
   line-height: 17px;
   letter-spacing: 1.4px;
   color: #d80101;
+  display: none;
+}
+
+.form__image-warning-text.warning-visible {
+  display: block;
 }
 
 .form__image-upload {
@@ -335,37 +340,36 @@
 /* изображение товара */
 .form__product {
   display: flex;
-  margin-top: 30px;
+  margin: 30px auto 0 auto;
   position: relative;
 }
-
-/* .form__product {
-  display: none;
-} */
 
 .product__image {
   margin: 0 auto;
 }
 
 .product__delete {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   border: none;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(53, 34, 104, 0.3);
   opacity: 0;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: 0.4s ease-in-out;
+  cursor: auto;
 }
 
 .product__delete:hover {
   opacity: 1;
+  cursor: pointer;
 }
 
 .product__delete:active {
   background-color: rgba(255, 182, 182, 0.5);
+  cursor: pointer;
 }
 
 .product__delete:active > svg > path {

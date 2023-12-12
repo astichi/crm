@@ -4,6 +4,7 @@ import {
   renderNewGoods,
   renderAfterDelete,
   renderTableTotal} from './render.js';
+import {openFormModal} from './createForm.js';
 
 
 const fetchRequest = async (url, {
@@ -48,10 +49,17 @@ const fetchRequest = async (url, {
 };
 
 const getGoods = () => {
-  fetchRequest(`${URL}api/goods?page=2`, {
+  fetchRequest(`${URL}api/goods?page=3`, {
     method: 'GET',
     callback: renderGoods,
   });
+};
+
+const getGoodsById = (id) => {
+  fetchRequest(`${URL}api/goods/${id}`, {
+    method: 'GET',
+    callback: openFormModal,
+  }, id);
 };
 
 const postGoods = (data) => {
@@ -82,4 +90,4 @@ const getTableTotal = () => {
   });
 };
 
-export {getGoods, postGoods, deleteGoods, getTableTotal};
+export {getGoods, getGoodsById, postGoods, deleteGoods, getTableTotal};

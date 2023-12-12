@@ -1,4 +1,4 @@
-import {postGoods, deleteGoods} from './serviceAPI.js';
+import {getGoodsById, postGoods, deleteGoods} from './serviceAPI.js';
 import {
   form,
   formOverlay,
@@ -10,24 +10,39 @@ import {
   tableAddButton,
   modalErrorOverlay} from './getElements.js';
 import {createSucsessModal} from './createElements.js';
+import {openFormModal} from './createForm.js';
 
 
 // форма
-const openFormModal = () => {
-  formOverlay.classList.add('is-visible');
-};
+// const openFormModal = () => {
+//   formOverlay.classList.add('is-visible');
+// };
 
 const closeFormModal = () => {
   formOverlay.classList.remove('is-visible');
-  formDiscount.disabled = true;
-  formTotal.textContent = '$ 0.00';
-  formError.classList.remove('error-visible');
-  formError.textContent = '';
-  form.reset();
+  formOverlay.innerHTML = '';
+  // formError.classList.remove('error-visible');
+  
+  // formDiscount.disabled = true;
+  // formTotal.textContent = '$ 0.00';
+  // formError.textContent = '';
+  // form.reset();
 };
 
-const controlFormModal = () => {
-  tableAddButton.addEventListener('click', openFormModal);
+const controlFormModal = (form) => {
+  tableAddButton.addEventListener('click', () => {
+    openFormModal(null, null, null);
+    formOverlay.classList.add('is-visible');
+  });
+
+  tableBody.addEventListener('click', ({target}) => {
+    if (target.closest('.table-body__edit-button')) {
+      const row = target.closest('.table-body__row');
+      getGoodsById(row.dataset.id);
+      // openFormModal(null, data);
+      formOverlay.classList.add('is-visible');
+    }
+  });
 
   formOverlay.addEventListener('click', ({target}) => {
     if (target === formOverlay || target.closest('.modal__close-button')) {
@@ -79,7 +94,7 @@ const controlErrorModal = () => {
 };
 
 // добавление товара
-const controlPostGoods = () => {
+const controlPostGoods = (form) => {
   form.addEventListener('submit', e => {
     e.preventDefault();
 

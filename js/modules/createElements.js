@@ -1,6 +1,9 @@
 import {calculateDiscount} from './calculate.js';
 import {tableIcons, modalIcons, closeIcon} from './svg.js';
-import {modalErrorOverlay, modalSucsessOverlay} from './getElements.js';
+import {
+  modalErrorOverlay,
+  modalSucsessOverlay} from './getElements.js';
+import {URL} from './const.js';
 
 
 const createTableRow = obj => {
@@ -18,8 +21,8 @@ const createTableRow = obj => {
     <td class="table-body__icon-column">
       <div class="icons-wrapper">
         <button type="button" class="icon__button table-body__image-button">
-          ${obj.image === 'image/notimage.jpg' ? tableIcons.noimage :
-            tableIcons.image}
+          ${obj.image === 'image/notimage.jpg' ?
+          tableIcons.noimage : tableIcons.image}
         </button>
         <button type="button" class="icon__button
           table-body__edit-button">${tableIcons.edit}</button>
@@ -31,8 +34,7 @@ const createTableRow = obj => {
 
   row.dataset.id = obj.id;
   row.dataset.pic = obj.image === 'image/notimage.jpg' ?
-    '../../images/no-image.jpg' :
-    `http://principled-iced-confidence.glitch.me/${obj.image}`;
+    '../../images/no-image.jpg' : `${URL}${obj.image}`;
 
   return row;
 };

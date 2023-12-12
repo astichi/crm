@@ -1,4 +1,4 @@
-import {calculateFormTotal} from './modules/calculate.js';
+// import {calculateFormTotal} from './modules/calculate.js';
 import {
   controlFormModal,
   controlCheckbox,
@@ -16,7 +16,7 @@ const init = () => {
 
   createErrorModal();
 
-  calculateFormTotal();
+  // calculateFormTotal();
 
   controlFormModal();
   controlCheckbox();

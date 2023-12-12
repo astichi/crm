@@ -11,17 +11,17 @@ const calculateDiscount = (price, count, discount) => {
   return total;
 };
 
-const calculateFormTotal = () => {
-  form.addEventListener('change', () => {
-    const totalPrice =
-      calculateDiscount(
-          form.price.value,
-          form.count.value,
-          form.discount.value);
+// const calculateFormTotal = () => {
+//   form.addEventListener('change', () => {
+//     const totalPrice =
+//       calculateDiscount(
+//           form.price.value,
+//           form.count.value,
+//           form.discount.value);
 
-    formTotal.textContent = `$ ${totalPrice.toFixed(2)}`;
-  });
-};
+//     formTotal.textContent = `$ ${totalPrice.toFixed(2)}`;
+//   });
+// };
 
 
-export {calculateDiscount, calculateFormTotal};
+export {calculateDiscount};
