@@ -5,7 +5,8 @@ import {
   openErrorModal,
   controlPostGoods,
   controlEditGoods,
-  controlCheckbox} from './control.js';
+  controlCheckbox,
+  controlImagePreview} from './control.js';
 import {calculateDiscount, calculateFormTotal} from './calculate.js';
 import {URL} from './const.js';
 
@@ -128,6 +129,10 @@ const openFormModal = async (err, data, id) => {
   const formCheckbox = document.querySelector('.form__input-checkbox');
   const formDiscount = document.querySelector('.form__input-discount');
   const formTotal = document.querySelector('.total__sum');
+  const file = document.querySelector('.form__image-button');
+  const preview = document.querySelector('.product__image');
+  const warning = document.querySelector('.form__image-warning-text');
+  const imageDelete = document.querySelector('.product__delete');
 
   if (data) {
     controlEditGoods(form, id);
@@ -135,6 +140,7 @@ const openFormModal = async (err, data, id) => {
     controlPostGoods(form);
   }
 
+  controlImagePreview(file, preview, warning, imageDelete);
   controlCheckbox(formCheckbox, formDiscount);
   calculateFormTotal(form, formTotal);
 };

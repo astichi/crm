@@ -10,6 +10,7 @@ import {
   modalErrorOverlay} from './getElements.js';
 import {createSucsessModal, createErrorModal} from './createElements.js';
 import {openFormModal} from './createForm.js';
+import toBase64 from './tobase64.js';
 
 
 // форма
@@ -78,11 +79,12 @@ const controlErrorModal = () => {
 
 // добавление товара
 const controlPostGoods = (form) => {
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
 
     const formData = new FormData(form);
     const newGoods = Object.fromEntries(formData);
+    newGoods.image = await toBase64(newGoods.image);
 
     postGoods(newGoods);
   });
@@ -90,11 +92,12 @@ const controlPostGoods = (form) => {
 
 // изменение товара
 const controlEditGoods = (form, id) => {
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
 
     const formData = new FormData(form);
     const editedGoods = Object.fromEntries(formData);
+    editedGoods.image = await toBase64(editedGoods.image);
 
     editGoodsById(editedGoods, id);
   });
@@ -127,6 +130,26 @@ const controlImagePopup = () => {
   });
 };
 
+// превью изображения в форме
+const controlImagePreview = (file, preview, warning, imageDelete) => {
+  file.addEventListener('change', () => {
+    if (file.files.length > 0) {
+      const src = URL.createObjectURL(file.files[0]);
+
+      if (file.files[0].size > 1000000) {
+        warning.classList.add('warning-visible');
+      } else {
+        warning.classList.remove('warning-visible');
+        preview.src = src;
+      }
+    }
+  });
+
+  imageDelete.addEventListener('click', () => {
+    preview.src = '';
+  });
+};
+
 
 export {
   closeFormModal,
@@ -138,4 +161,5 @@ export {
   controlImagePopup,
   controlSucsessModal,
   openErrorModal,
-  controlErrorModal};
+  controlErrorModal,
+  controlImagePreview};
