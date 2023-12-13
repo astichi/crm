@@ -49,7 +49,7 @@ const fetchRequest = async (url, {
 };
 
 const getGoods = () => {
-  fetchRequest(`${URL}api/goods?page=3`, {
+  fetchRequest(`${URL}api/goods?page=2`, {
     method: 'GET',
     callback: renderGoods,
   });
@@ -73,6 +73,17 @@ const postGoods = (data) => {
   });
 };
 
+const editGoodsById = (data, id) => {
+  fetchRequest(`${URL}api/goods/${id}`, {
+    method: 'PATCH',
+    body: data,
+    callback: renderNewGoods,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }, id);
+};
+
 const deleteGoods = (id) => {
   fetchRequest(`${URL}api/goods/${id}`, {
     method: 'DELETE',
@@ -90,4 +101,10 @@ const getTableTotal = () => {
   });
 };
 
-export {getGoods, getGoodsById, postGoods, deleteGoods, getTableTotal};
+export {
+  getGoods,
+  getGoodsById,
+  postGoods,
+  editGoodsById,
+  deleteGoods,
+  getTableTotal};

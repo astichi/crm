@@ -51,11 +51,12 @@ const createErrorModal = () => {
   return modalErrorOverlay;
 };
 
-const createSucsessModal = () => {
+const createSucsessModal = (id) => {
   modalSucsessOverlay.insertAdjacentHTML('beforeend', `
     <div class="modal__sucsess sucsess">
       <div class="sucsess__image">${modalIcons.sucsess}</div>
-      <p class="sucsess__text">Данные успешно добавлены</p>
+      <p class="sucsess__text">
+      ${id ? 'Данные успешно обновлены' : 'Данные успешно добавлены'}</p>
     </div>
   `);
 

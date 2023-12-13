@@ -1,5 +1,5 @@
 import {createTableRow} from './createElements.js';
-import {tableBody, tableTotal, formError} from './getElements.js';
+import {tableBody, tableTotal} from './getElements.js';
 import {
   openErrorModal,
   closeFormModal,
@@ -25,7 +25,7 @@ const renderGoods = (err, data) => {
   }
 };
 
-const renderNewGoods = (err, data) => {
+const renderNewGoods = (err, data, id) => {
   if (err) {
     if (err.name !== 'Error') {
       console.warn(err, data);
@@ -35,6 +35,7 @@ const renderNewGoods = (err, data) => {
 
     if (err.message) {
       console.warn(err, data);
+      const formError = document.querySelector('.total__error');
       formError.classList.add('error-visible');
       formError.textContent = err.message;
       return;
@@ -46,12 +47,17 @@ const renderNewGoods = (err, data) => {
   }
 
   try {
-    const result = createTableRow(data);
-    tableBody.append(result);
+    if (id) {
+      const row = document.querySelector(`[data-id="${id}"]`);
+      row.replaceWith(createTableRow(data));
+    } else {
+      const result = createTableRow(data);
+      tableBody.append(result);
+    }
 
     getTableTotal();
     closeFormModal();
-    controlSucsessModal();
+    controlSucsessModal(id);
   } catch (err) {
     console.warn(err);
     openErrorModal();

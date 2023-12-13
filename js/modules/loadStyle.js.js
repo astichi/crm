@@ -1,5 +1,4 @@
 const styles = new Map();
-console.log(styles);
 
 const loadStyle = url => {
   if (styles.has(url)) {

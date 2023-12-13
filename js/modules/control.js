@@ -1,59 +1,44 @@
-import {getGoodsById, postGoods, deleteGoods} from './serviceAPI.js';
 import {
-  form,
+  getGoodsById,
+  postGoods,
+  deleteGoods,
+  editGoodsById} from './serviceAPI.js';
+import {
   formOverlay,
-  formCheckbox,
-  formDiscount,
-  formTotal,
-  formError,
   tableBody,
   tableAddButton,
   modalErrorOverlay} from './getElements.js';
-import {createSucsessModal} from './createElements.js';
+import {createSucsessModal, createErrorModal} from './createElements.js';
 import {openFormModal} from './createForm.js';
 
 
 // форма
-// const openFormModal = () => {
-//   formOverlay.classList.add('is-visible');
-// };
-
 const closeFormModal = () => {
   formOverlay.classList.remove('is-visible');
   formOverlay.innerHTML = '';
-  // formError.classList.remove('error-visible');
-  
-  // formDiscount.disabled = true;
-  // formTotal.textContent = '$ 0.00';
-  // formError.textContent = '';
-  // form.reset();
 };
 
-const controlFormModal = (form) => {
+const controlFormModal = () => {
   tableAddButton.addEventListener('click', () => {
     openFormModal(null, null, null);
-    formOverlay.classList.add('is-visible');
   });
 
   tableBody.addEventListener('click', ({target}) => {
     if (target.closest('.table-body__edit-button')) {
       const row = target.closest('.table-body__row');
       getGoodsById(row.dataset.id);
-      // openFormModal(null, data);
-      formOverlay.classList.add('is-visible');
     }
   });
 
   formOverlay.addEventListener('click', ({target}) => {
     if (target === formOverlay || target.closest('.modal__close-button')) {
-      form.reset();
       closeFormModal();
     }
   });
 };
 
 // чекбокс
-const controlCheckbox = () => {
+const controlCheckbox = (formCheckbox, formDiscount) => {
   formCheckbox.addEventListener('click', ({target}) => {
     if (target.checked) {
       formDiscount.disabled = false;
@@ -65,30 +50,28 @@ const controlCheckbox = () => {
 };
 
 // окно ошибки, успешного добавления
-const controlSucsessModal = () => {
-  const modal = createSucsessModal();
+const controlSucsessModal = (id) => {
+  const modal = createSucsessModal(id);
 
   modal.classList.add('modal-visible');
 
   setTimeout(() => {
     modal.classList.remove('modal-visible');
-    modal.remove();
+    modal.innerHTML = '';
   }, 2000);
 };
 
 const openErrorModal = () => {
-  modalErrorOverlay.classList.add('modal-visible');
-};
-
-const closeErrorModal = () => {
-  modalErrorOverlay.classList.remove('modal-visible');
+  const modal = createErrorModal();
+  modal.classList.add('modal-visible');
 };
 
 const controlErrorModal = () => {
   modalErrorOverlay.addEventListener('click', ({target}) => {
     if (target === modalErrorOverlay ||
         target.closest('.error__close-button')) {
-      closeErrorModal();
+      modalErrorOverlay.classList.remove('modal-visible');
+      modalErrorOverlay.innerHTML = '';
     }
   });
 };
@@ -102,6 +85,18 @@ const controlPostGoods = (form) => {
     const newGoods = Object.fromEntries(formData);
 
     postGoods(newGoods);
+  });
+};
+
+// изменение товара
+const controlEditGoods = (form, id) => {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const editedGoods = Object.fromEntries(formData);
+
+    editGoodsById(editedGoods, id);
   });
 };
 
@@ -138,6 +133,7 @@ export {
   controlFormModal,
   controlPostGoods,
   controlCheckbox,
+  controlEditGoods,
   controlDeleteGoods,
   controlImagePopup,
   controlSucsessModal,

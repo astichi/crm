@@ -323,6 +323,7 @@
 .total__wrapper {
   position: relative;
 }
+
 .total__error.error-visible {
   display: block;
   position: absolute;
@@ -337,8 +338,10 @@
   line-height: 17px;
   color: #d80101;
 }
+
 /* изображение товара */
 .form__product {
+  max-width: 200px;
   display: flex;
   margin: 30px auto 0 auto;
   position: relative;

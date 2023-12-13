@@ -1,6 +1,3 @@
-import {form, formTotal} from './getElements.js';
-
-
 const calculateDiscount = (price, count, discount) => {
   let total = price * count;
 
@@ -11,17 +8,17 @@ const calculateDiscount = (price, count, discount) => {
   return total;
 };
 
-// const calculateFormTotal = () => {
-//   form.addEventListener('change', () => {
-//     const totalPrice =
-//       calculateDiscount(
-//           form.price.value,
-//           form.count.value,
-//           form.discount.value);
+const calculateFormTotal = (form, formTotal) => {
+  form.addEventListener('change', () => {
+    const totalPrice =
+      calculateDiscount(
+          form.price.value,
+          form.count.value,
+          form.discount.value);
 
-//     formTotal.textContent = `$ ${totalPrice.toFixed(2)}`;
-//   });
-// };
+    formTotal.textContent = `$ ${totalPrice.toFixed(2)}`;
+  });
+};
 
 
-export {calculateDiscount};
+export {calculateDiscount, calculateFormTotal};
